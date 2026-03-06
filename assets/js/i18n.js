@@ -6,8 +6,12 @@
 const TRANSLATIONS = {
   // ---- SHARED (nav, footer, CTAs) ----
   'nav.product': { en:'Product', fr:'Produit', es:'Producto', ar:'\u0627\u0644\u0645\u0646\u062A\u062C' },
+  'nav.solutions': { en:'Solutions', fr:'Solutions', es:'Soluciones', ar:'\u0627\u0644\u062D\u0644\u0648\u0644' },
   'nav.pricing': { en:'Pricing', fr:'Tarifs', es:'Precios', ar:'\u0627\u0644\u0623\u0633\u0639\u0627\u0631' },
   'nav.resources': { en:'Resources', fr:'Ressources', es:'Recursos', ar:'\u0627\u0644\u0645\u0648\u0627\u0631\u062F' },
+  'nav.docs': { en:'Docs', fr:'Docs', es:'Docs', ar:'\u0627\u0644\u0648\u062B\u0627\u0626\u0642' },
+  'nav.partners': { en:'Partners', fr:'Partenaires', es:'Socios', ar:'\u0627\u0644\u0634\u0631\u0643\u0627\u0621' },
+  'nav.about': { en:'About', fr:'\u00C0 propos', es:'Acerca de', ar:'\u0639\u0646\u0627' },
   'nav.login': { en:'Log in', fr:'Connexion', es:'Iniciar sesi\u00F3n', ar:'\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062F\u062E\u0648\u0644' },
   'nav.trial': { en:'Start free trial', fr:'Essai gratuit', es:'Prueba gratis', ar:'\u0627\u0628\u062F\u0623 \u062A\u062C\u0631\u0628\u0629 \u0645\u062C\u0627\u0646\u064A\u0629' },
 

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Virtus Transport</title>
+  <meta name="description" content="Explore the Virtus Transport platform: route optimization, live tracking, driver management, analytics, and API integrations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        Virtus
+      </a>
+      <div class="nav-links">
+        <a href="product.html" class="active">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="nav-cta">
+        <a href="login.html" class="btn btn-secondary">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Start free trial</a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section style="padding-top: 8rem; padding-bottom: 3rem;">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <div class="hero-badge" style="margin: 0 auto 1.5rem;">
+          <span class="hero-badge-dot"></span>
+          Platform Overview
+        </div>
+        <h1 style="max-width: 700px; margin: 0 auto 1.25rem;">Everything you need to<br>run last mile delivery</h1>
+        <p class="text-lg" style="max-width: 560px; margin: 0 auto 2rem;">
+          One platform to plan routes, track drivers, delight customers, and grow your transport business.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="signup.html" class="btn btn-primary">Start free trial</a>
+          <a href="demo.html" class="btn btn-secondary">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT NAV TABS ===== -->
+  <section style="padding: 1rem 0 0; border-bottom: 1px solid rgba(203,213,225,0.4); position: sticky; top: 64px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); z-index: 100;">
+    <div class="container">
+      <div style="display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 0;">
+        <a href="#route-optimization" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Route Optimization</a>
+        <a href="#live-tracking" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Live Tracking</a>
+        <a href="#driver-app" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Driver App</a>
+        <a href="#customer-experience" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Customer Experience</a>
+        <a href="#analytics-section" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Analytics</a>
+        <a href="#integrations" style="padding: 0.75rem 0; font-size: 0.875rem; font-weight: 600; color: var(--vtx-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;">Integrations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROUTE OPTIMIZATION ===== -->
+  <section class="section" id="route-optimization">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <span class="section-label">Route Optimization</span>
+          <h3>Plan hundreds of routes<br>in seconds</h3>
+          <p>Our AI-powered engine considers time windows, vehicle capacity, driver skills, traffic patterns, and service priorities to generate the most efficient routes possible.</p>
+          <ul class="feature-bullets">
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Multi-constraint optimization (time, capacity, skills)
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Real-time traffic integration for accurate ETAs
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Drag-and-drop route editor for manual adjustments
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Same-day dynamic re-optimization
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner map-visual">
+            <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; inset: 0;">
+              <line x1="0" y1="60" x2="400" y2="60" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="0" y1="120" x2="400" y2="120" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="0" y1="180" x2="400" y2="180" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="0" y1="240" x2="400" y2="240" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="100" y1="0" x2="100" y2="300" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="200" y1="0" x2="200" y2="300" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <line x1="300" y1="0" x2="300" y2="300" stroke="#cbd5e1" stroke-width="0.5" opacity="0.3"/>
+              <!-- Route A -->
+              <path d="M50 260 C100 200, 150 180, 190 140 S250 80, 350 50" stroke="#2563eb" stroke-width="2.5" fill="none" opacity="0.7"/>
+              <!-- Route B -->
+              <path d="M50 260 C80 250, 120 240, 160 220 S220 200, 280 200 S320 210, 360 190" stroke="#10b981" stroke-width="2.5" fill="none" opacity="0.7"/>
+              <!-- Route C -->
+              <path d="M50 260 C90 270, 140 280, 200 260 S280 240, 340 270" stroke="#f59e0b" stroke-width="2.5" fill="none" opacity="0.7"/>
+              <!-- Depot -->
+              <rect x="38" y="248" width="24" height="24" rx="6" fill="#2563eb"/>
+              <text x="50" y="264" fill="white" font-size="10" text-anchor="middle" font-weight="700" font-family="Outfit">D</text>
+              <!-- Stops -->
+              <circle cx="190" cy="140" r="5" fill="#2563eb"/><circle cx="350" cy="50" r="5" fill="#2563eb"/>
+              <circle cx="160" cy="220" r="5" fill="#10b981"/><circle cx="280" cy="200" r="5" fill="#10b981"/><circle cx="360" cy="190" r="5" fill="#10b981"/>
+              <circle cx="200" cy="260" r="5" fill="#f59e0b"/><circle cx="340" cy="270" r="5" fill="#f59e0b"/>
+            </svg>
+            <div style="position: absolute; top: 16px; left: 16px; background: white; border-radius: 0.5rem; padding: 0.625rem 0.75rem; box-shadow: 0 4px 16px rgba(0,0,0,0.1); font-size: 0.6875rem;">
+              <div style="font-weight: 700; color: var(--vtx-navy); font-family: var(--font-display); margin-bottom: 0.25rem;">3 Routes Generated</div>
+              <div style="color: var(--vtx-muted); display: flex; gap: 0.75rem;">
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 3px; background: #2563eb; border-radius: 2px; display: inline-block;"></span> Route A</span>
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 3px; background: #10b981; border-radius: 2px; display: inline-block;"></span> Route B</span>
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 3px; background: #f59e0b; border-radius: 2px; display: inline-block;"></span> Route C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-features grid -->
+      <div class="grid-3 reveal" style="margin-top: 3rem;">
+        <div class="card">
+          <div class="card-icon blue">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Territory Management</h4>
+          <p>Define delivery zones and auto-assign orders based on geography, driver availability, and workload balance.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon emerald">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h4>Bulk Import</h4>
+          <p>Upload thousands of orders via CSV, Excel, or API. Our system parses addresses and geocodes them instantly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon amber">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <h4>Priority Stops</h4>
+          <p>Mark VIP customers or time-sensitive deliveries as priorities. The optimizer places them first in the sequence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIVE TRACKING ===== -->
+  <section class="section section-light" id="live-tracking">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-content reveal">
+          <span class="section-label">Live Tracking</span>
+          <h3>Complete visibility<br>across your fleet</h3>
+          <p>See every vehicle on a real-time map. Monitor progress, identify delays, and communicate with drivers instantly — all from one screen.</p>
+          <ul class="feature-bullets">
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Live GPS positions updated every 10 seconds
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Automatic alerts for delays, missed stops, and exceptions
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Two-way messaging between dispatch and drivers
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Dynamic ETA recalculation with traffic awareness
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner" style="background: var(--vtx-navy); padding: 1.25rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                <span style="font-family: var(--font-display); font-weight: 700; color: white; font-size: 0.8125rem;">Fleet Monitor</span>
+                <div style="display: flex; gap: 0.5rem;">
+                  <span style="font-size: 0.625rem; padding: 2px 8px; background: rgba(16,185,129,0.15); color: var(--vtx-emerald); border-radius: 2rem; font-weight: 600;">8 On Route</span>
+                  <span style="font-size: 0.625rem; padding: 2px 8px; background: rgba(245,158,11,0.15); color: var(--vtx-amber); border-radius: 2rem; font-weight: 600;">2 Delayed</span>
+                </div>
+              </div>
+              <!-- Map area -->
+              <div style="flex: 1; background: linear-gradient(135deg, #1a2744, #162036); border-radius: 0.5rem; position: relative; overflow: hidden; min-height: 160px;">
+                <div style="position: absolute; inset: 0; opacity: 0.1;">
+                  <svg width="100%" height="100%" viewBox="0 0 200 150"><line x1="0" y1="30" x2="200" y2="30" stroke="white" stroke-width="0.5"/><line x1="0" y1="60" x2="200" y2="60" stroke="white" stroke-width="0.5"/><line x1="0" y1="90" x2="200" y2="90" stroke="white" stroke-width="0.5"/><line x1="0" y1="120" x2="200" y2="120" stroke="white" stroke-width="0.5"/><line x1="40" y1="0" x2="40" y2="150" stroke="white" stroke-width="0.5"/><line x1="80" y1="0" x2="80" y2="150" stroke="white" stroke-width="0.5"/><line x1="120" y1="0" x2="120" y2="150" stroke="white" stroke-width="0.5"/><line x1="160" y1="0" x2="160" y2="150" stroke="white" stroke-width="0.5"/></svg>
+                </div>
+                <!-- Vehicle markers -->
+                <div style="position: absolute; width: 10px; height: 10px; background: var(--vtx-blue); border-radius: 50%; top: 25%; left: 30%; box-shadow: 0 0 0 3px rgba(37,99,235,0.3), 0 0 12px rgba(37,99,235,0.4);"></div>
+                <div style="position: absolute; width: 10px; height: 10px; background: var(--vtx-emerald); border-radius: 50%; top: 45%; left: 55%; box-shadow: 0 0 0 3px rgba(16,185,129,0.3), 0 0 12px rgba(16,185,129,0.4);"></div>
+                <div style="position: absolute; width: 10px; height: 10px; background: var(--vtx-amber); border-radius: 50%; top: 60%; left: 70%; box-shadow: 0 0 0 3px rgba(245,158,11,0.3), 0 0 12px rgba(245,158,11,0.4);"></div>
+                <div style="position: absolute; width: 10px; height: 10px; background: var(--vtx-blue); border-radius: 50%; top: 35%; left: 80%; box-shadow: 0 0 0 3px rgba(37,99,235,0.3);"></div>
+                <div style="position: absolute; width: 10px; height: 10px; background: var(--vtx-emerald); border-radius: 50%; top: 70%; left: 20%; box-shadow: 0 0 0 3px rgba(16,185,129,0.3);"></div>
+              </div>
+              <!-- Status bar -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                <div style="background: rgba(255,255,255,0.06); padding: 0.5rem; border-radius: 0.375rem; text-align: center;">
+                  <div style="font-family: var(--font-display); font-weight: 800; color: white; font-size: 1rem;">342</div>
+                  <div style="font-size: 0.5625rem; color: var(--vtx-muted);">Stops Done</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.06); padding: 0.5rem; border-radius: 0.375rem; text-align: center;">
+                  <div style="font-family: var(--font-display); font-weight: 800; color: white; font-size: 1rem;">128</div>
+                  <div style="font-size: 0.5625rem; color: var(--vtx-muted);">Remaining</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.06); padding: 0.5rem; border-radius: 0.375rem; text-align: center;">
+                  <div style="font-family: var(--font-display); font-weight: 800; color: var(--vtx-emerald); font-size: 1rem;">96%</div>
+                  <div style="font-size: 0.5625rem; color: var(--vtx-muted);">On Time</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DRIVER APP ===== -->
+  <section class="section" id="driver-app">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <span class="section-label">Driver App</span>
+          <h3>A mobile app drivers<br>actually love</h3>
+          <p>Equip your drivers with an intuitive, offline-capable mobile app that guides them through each stop with turn-by-turn navigation, proof of delivery, and more.</p>
+          <ul class="feature-bullets">
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Turn-by-turn navigation integrated with Waze and Google Maps
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Photo, signature, and barcode proof of delivery
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Works offline — syncs when connection is restored
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Available on iOS and Android
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner" style="background: linear-gradient(180deg, #f8fafc, #e2e8f0); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <!-- Phone mockup -->
+            <div style="width: 180px; background: white; border-radius: 1.5rem; border: 2px solid var(--vtx-cloud); overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.1);">
+              <div style="padding: 0.5rem 0.75rem; background: var(--vtx-navy); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.625rem; color: white; font-weight: 600;">Virtus Driver</span>
+                <span style="font-size: 0.5625rem; color: var(--vtx-emerald);">Online</span>
+              </div>
+              <div style="padding: 0.75rem;">
+                <div style="font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; color: var(--vtx-navy); margin-bottom: 0.5rem;">Next Stop</div>
+                <div style="background: var(--vtx-snow); border-radius: 0.5rem; padding: 0.625rem; margin-bottom: 0.5rem;">
+                  <div style="font-size: 0.6875rem; font-weight: 600; color: var(--vtx-navy);">12 King Street</div>
+                  <div style="font-size: 0.5625rem; color: var(--vtx-muted); margin-top: 2px;">ETA: 2 min &middot; Stop 5 of 12</div>
+                </div>
+                <div style="display: flex; gap: 0.375rem; margin-bottom: 0.5rem;">
+                  <div style="flex: 1; background: var(--vtx-blue); color: white; font-size: 0.5625rem; font-weight: 600; padding: 0.375rem; border-radius: 0.375rem; text-align: center;">Navigate</div>
+                  <div style="flex: 1; background: var(--vtx-snow); color: var(--vtx-navy); font-size: 0.5625rem; font-weight: 600; padding: 0.375rem; border-radius: 0.375rem; text-align: center;">Call</div>
+                </div>
+                <div style="font-size: 0.5625rem; color: var(--vtx-muted); margin-bottom: 0.375rem; font-weight: 600;">Upcoming</div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                  <div style="display: flex; align-items: center; gap: 0.375rem; padding: 0.375rem; background: var(--vtx-snow); border-radius: 0.25rem;">
+                    <div style="width: 4px; height: 4px; background: var(--vtx-blue); border-radius: 50%;"></div>
+                    <span style="font-size: 0.5625rem; color: var(--vtx-steel);">45 Queen Ave</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.375rem; padding: 0.375rem; background: var(--vtx-snow); border-radius: 0.25rem;">
+                    <div style="width: 4px; height: 4px; background: var(--vtx-blue); border-radius: 50%;"></div>
+                    <span style="font-size: 0.5625rem; color: var(--vtx-steel);">8 Park Lane</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.375rem; padding: 0.375rem; background: var(--vtx-snow); border-radius: 0.25rem;">
+                    <div style="width: 4px; height: 4px; background: var(--vtx-blue); border-radius: 50%;"></div>
+                    <span style="font-size: 0.5625rem; color: var(--vtx-steel);">22 Bridge Rd</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOMER EXPERIENCE ===== -->
+  <section class="section section-light" id="customer-experience">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <span class="section-label">Customer Experience</span>
+        <h2>Delight every recipient</h2>
+        <p>Branded tracking, real-time notifications, and flexible delivery options that reduce failed deliveries and increase customer satisfaction.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="width: 56px; height: 56px; background: var(--vtx-blue-pale); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" fill="none" stroke="var(--vtx-blue)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>SMS & Email Alerts</h4>
+          <p>Automated notifications at every milestone — out for delivery, arriving soon, delivered, and failed attempts.</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="width: 56px; height: 56px; background: #d1fae5; border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" fill="none" stroke="var(--vtx-emerald)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <h4>Branded Tracking</h4>
+          <p>Customise tracking pages with your logo, brand colours, and domain. Give customers a premium experience.</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="width: 56px; height: 56px; background: #fef3c7; border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" fill="none" stroke="var(--vtx-amber)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <h4>Proof of Delivery</h4>
+          <p>Photo, signature, and PIN-based proof of delivery captured automatically and available in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ANALYTICS ===== -->
+  <section class="section" id="analytics-section">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-content reveal">
+          <span class="section-label">Analytics</span>
+          <h3>Data-driven decisions<br>for your fleet</h3>
+          <p>Track every metric that matters — from delivery success rates and driver performance to cost efficiency and customer satisfaction scores.</p>
+          <ul class="feature-bullets">
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Pre-built dashboards for common logistics KPIs
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Custom report builder with scheduled exports
+            </li>
+            <li>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
+              Trend analysis and anomaly detection
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner" style="background: white; padding: 1.5rem;">
+            <div style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 0.8125rem; color: var(--vtx-navy);">Delivery Trends</div>
+              <div style="flex: 1; position: relative; min-height: 120px;">
+                <svg width="100%" height="100%" viewBox="0 0 300 120" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.15"/>
+                      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 100 Q30 90, 60 80 T120 65 T180 45 T240 35 T300 20 V120 H0Z" fill="url(#chartGrad)"/>
+                  <path d="M0 100 Q30 90, 60 80 T120 65 T180 45 T240 35 T300 20" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+                  <circle cx="300" cy="20" r="4" fill="#2563eb"/>
+                </svg>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.5625rem; color: var(--vtx-muted);">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTEGRATIONS ===== -->
+  <section class="section section-light" id="integrations">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <span class="section-label">Integrations</span>
+        <h2>Connects with your<br>favourite tools</h2>
+        <p>Virtus integrates with popular ecommerce, warehouse, and business platforms so you can automate your entire workflow.</p>
+      </div>
+
+      <div class="grid-4 reveal">
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">Shop</div>
+          <h4 style="font-size: 0.9375rem;">Shopify</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">Woo</div>
+          <h4 style="font-size: 0.9375rem;">WooCommerce</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">SAP</div>
+          <h4 style="font-size: 0.9375rem;">SAP</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">Zap</div>
+          <h4 style="font-size: 0.9375rem;">Zapier</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">SF</div>
+          <h4 style="font-size: 0.9375rem;">Salesforce</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">Slack</div>
+          <h4 style="font-size: 0.9375rem;">Slack</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">HB</div>
+          <h4 style="font-size: 0.9375rem;">HubSpot</h4>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem;">
+          <div style="width: 48px; height: 48px; background: var(--vtx-snow); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; color: var(--vtx-navy);">API</div>
+          <h4 style="font-size: 0.9375rem;">Custom API</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section">
+    <div class="container reveal">
+      <div class="cta-banner">
+        <span class="section-label" style="color: var(--vtx-blue-light);">Get Started</span>
+        <h2>Ready to optimise your<br>delivery operations?</h2>
+        <p>Start your 14-day free trial today. No credit card required.</p>
+        <div class="btn-group">
+          <a href="signup.html" class="btn btn-primary" style="padding: 0.875rem 2rem;">Start free trial</a>
+          <a href="contact.html" class="btn btn-white">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="color: var(--vtx-white);">
+            Virtus
+          </a>
+          <p>The complete last-mile management platform for courier and transport companies worldwide.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="product.html">Route Optimization</a>
+          <a href="product.html">Live Tracking</a>
+          <a href="product.html">Driver App</a>
+          <a href="product.html">Analytics</a>
+          <a href="product.html">API</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Blog</a>
+          <a href="resources.html">Case Studies</a>
+          <a href="resources.html">Guides</a>
+          <a href="docs.html">Documentation</a>
+          <a href="help.html">Help Centre</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About</a>
+          <a href="careers.html">Careers</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="partners.html">Partners</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Virtus Transport. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

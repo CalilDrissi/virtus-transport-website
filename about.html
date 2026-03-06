@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Virtus Transport</title>
+  <meta name="description" content="Learn about Virtus Transport — our mission to transform last-mile logistics, our story, and the team behind the platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        Virtus
+      </a>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="nav-cta">
+        <a href="login.html" class="btn btn-secondary">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Start free trial</a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section style="padding-top: 8rem; padding-bottom: var(--section-pad);">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Our Story
+        </div>
+        <h1>About Virtus Transport</h1>
+        <p class="text-lg">We are on a mission to transform last-mile logistics — making every delivery faster, smarter, and more sustainable for businesses and communities worldwide.</p>
+      </div>
+
+      <!-- Abstract visual -->
+      <div class="reveal reveal-delay-2" style="max-width: 800px; margin: 0 auto; aspect-ratio: 16/7; border-radius: 1rem; overflow: hidden; position: relative; background: linear-gradient(135deg, var(--vtx-navy) 0%, #1a2744 50%, var(--vtx-slate) 100%);">
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+          <svg width="100%" height="100%" viewBox="0 0 800 350" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.6;">
+            <!-- Grid lines -->
+            <line x1="0" y1="175" x2="800" y2="175" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="400" y1="0" x2="400" y2="350" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="200" y1="0" x2="200" y2="350" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <line x1="600" y1="0" x2="600" y2="350" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <!-- Route paths -->
+            <path d="M100,250 Q200,100 350,175 T600,120" stroke="rgba(37,99,235,0.4)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+            <path d="M150,280 Q300,180 450,200 T700,100" stroke="rgba(16,185,129,0.3)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+            <path d="M50,180 Q250,280 400,150 T750,200" stroke="rgba(245,158,11,0.25)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+            <!-- Nodes -->
+            <circle cx="100" cy="250" r="6" fill="#2563eb" opacity="0.8"/><circle cx="100" cy="250" r="12" fill="none" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <circle cx="350" cy="175" r="8" fill="#2563eb" opacity="0.9"/><circle cx="350" cy="175" r="16" fill="none" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <circle cx="600" cy="120" r="6" fill="#2563eb" opacity="0.8"/><circle cx="600" cy="120" r="12" fill="none" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <circle cx="450" cy="200" r="5" fill="#10b981" opacity="0.7"/>
+            <circle cx="700" cy="100" r="5" fill="#10b981" opacity="0.7"/>
+            <circle cx="400" cy="150" r="5" fill="#f59e0b" opacity="0.6"/>
+            <circle cx="250" cy="220" r="4" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="530" cy="160" r="4" fill="rgba(255,255,255,0.2)"/>
+            <!-- Central glow -->
+            <circle cx="400" cy="175" r="80" fill="url(#heroGlow)"/>
+            <defs>
+              <radialGradient id="heroGlow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%" stop-color="rgba(37,99,235,0.15)"/>
+                <stop offset="100%" stop-color="rgba(37,99,235,0)"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- Overlay text -->
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--vtx-white); letter-spacing: -0.03em; opacity: 0.15;">CONNECTING THE LAST MILE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="section-label">Our Mission</div>
+        <h2>Making last-mile delivery efficient, sustainable, and stress-free</h2>
+        <p>Every day, millions of parcels travel the final stretch to doorsteps around the world. That last mile is the hardest, the most expensive, and the most polluting leg of the journey. We believe technology can change that.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal reveal-delay-1" style="text-align: center; padding: 2.5rem 2rem;">
+          <div class="card-icon blue" style="margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <h4>Efficient</h4>
+          <p>Cut delivery times and costs with AI-powered route optimization that adapts in real time.</p>
+        </div>
+        <div class="card reveal reveal-delay-2" style="text-align: center; padding: 2.5rem 2rem;">
+          <div class="card-icon emerald" style="margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h4>Stress-Free</h4>
+          <p>Give dispatchers, drivers, and customers full visibility and control — no more guesswork.</p>
+        </div>
+        <div class="card reveal reveal-delay-3" style="text-align: center; padding: 2.5rem 2rem;">
+          <div class="card-icon amber" style="margin: 0 auto 1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg>
+          </div>
+          <h4>Sustainable</h4>
+          <p>Fewer miles driven means lower emissions. Our platform helps fleets reduce their carbon footprint by up to 30%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORY / TIMELINE ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="section-label">Our Journey</div>
+        <h2>From a London startup to a global platform</h2>
+        <p>What started as a simple idea to fix broken delivery routes has grown into a platform trusted by thousands of companies across the world.</p>
+      </div>
+
+      <div style="max-width: 720px; margin: 0 auto; position: relative;">
+        <!-- Vertical line -->
+        <div style="position: absolute; left: 23px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--vtx-blue-pale), var(--vtx-blue), var(--vtx-blue-pale)); border-radius: 1px;"></div>
+
+        <!-- 2019 -->
+        <div class="reveal" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2019</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>Founded in London</h4>
+            <p style="font-size: 0.9375rem;">Two logistics veterans saw how inefficient last-mile routing had become. They built the first prototype in a Shoreditch co-working space.</p>
+          </div>
+        </div>
+
+        <!-- 2020 -->
+        <div class="reveal reveal-delay-1" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2020</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>First 100 Customers</h4>
+            <p style="font-size: 0.9375rem;">The pandemic accelerated demand for delivery. Virtus helped courier companies scale operations when they needed it most.</p>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="reveal reveal-delay-2" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2021</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>Series A Funding</h4>
+            <p style="font-size: 0.9375rem;">Raised a significant round led by top-tier investors, allowing us to triple the engineering team and accelerate product development.</p>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="reveal" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2022</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>Expanded to 15 Countries</h4>
+            <p style="font-size: 0.9375rem;">Opened offices in Berlin and Dubai. Launched multi-language support and region-specific compliance features.</p>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="reveal reveal-delay-1" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2023</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>500M+ Deliveries Milestone</h4>
+            <p style="font-size: 0.9375rem;">Half a billion deliveries optimized through the Virtus platform. Launched the Driver App and real-time analytics dashboard.</p>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="reveal reveal-delay-2" style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--vtx-blue); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white);">2024</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>AI Route Engine Launched</h4>
+            <p style="font-size: 0.9375rem;">Introduced our next-generation AI routing engine, cutting average delivery times by 22% and fuel costs by 18% for customers.</p>
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="reveal" style="display: flex; gap: 2rem; align-items: flex-start; position: relative;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--vtx-blue), var(--vtx-emerald)); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--vtx-white), 0 0 16px rgba(37,99,235,0.3);">2025</div>
+          <div style="padding-top: 0.625rem;">
+            <h4>1B+ Deliveries, 30+ Countries</h4>
+            <p style="font-size: 0.9375rem;">One billion deliveries and counting. Operating across 30+ countries with 200+ employees and a relentless focus on what comes next.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS BAR ===== -->
+  <section class="section section-dark">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;" class="reveal">
+        <div class="stat-item">
+          <div class="stat-number">200+</div>
+          <div class="stat-label" style="color: var(--vtx-light);">Employees</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label" style="color: var(--vtx-light);">Countries</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1B+</div>
+          <div class="stat-label" style="color: var(--vtx-light);">Deliveries Optimized</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2,000+</div>
+          <div class="stat-label" style="color: var(--vtx-light);">Customers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="section-label">Leadership</div>
+        <h2>The team behind Virtus</h2>
+        <p>A diverse group of logistics experts, engineers, and operators united by a shared goal: making delivery work better for everyone.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- CEO -->
+        <div class="card reveal reveal-delay-1" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--vtx-blue), var(--vtx-blue-deep)); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">JH</div>
+          <h4>James Harrington</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">Chief Executive Officer</p>
+          <p style="font-size: 0.875rem;">Former VP of Operations at a major European logistics group. 15 years in supply chain and delivery.</p>
+        </div>
+
+        <!-- CTO -->
+        <div class="card reveal reveal-delay-2" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--vtx-emerald), #059669); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">SP</div>
+          <h4>Sofia Petrov</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">Chief Technology Officer</p>
+          <p style="font-size: 0.875rem;">Ex-Google engineering lead. PhD in computational optimization. Architect of our AI route engine.</p>
+        </div>
+
+        <!-- VP Engineering -->
+        <div class="card reveal reveal-delay-3" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--vtx-amber), #d97706); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">MK</div>
+          <h4>Marcus Kim</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">VP of Engineering</p>
+          <p style="font-size: 0.875rem;">Scaled engineering teams at two YC-backed startups. Passionate about developer experience and platform reliability.</p>
+        </div>
+
+        <!-- VP Sales -->
+        <div class="card reveal reveal-delay-1" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--vtx-rose), #dc2626); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">LN</div>
+          <h4>Laura Navarro</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">VP of Sales</p>
+          <p style="font-size: 0.875rem;">Built enterprise sales at two logistics SaaS companies. Fluent in four languages. Closes deals across continents.</p>
+        </div>
+
+        <!-- Head of Product -->
+        <div class="card reveal reveal-delay-2" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">AW</div>
+          <h4>Amir Weston</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">Head of Product</p>
+          <p style="font-size: 0.875rem;">Former product lead at a top fleet management platform. Obsessed with making complex workflows feel simple.</p>
+        </div>
+
+        <!-- Head of Customer Success -->
+        <div class="card reveal reveal-delay-3" style="text-align: center; padding: 2.5rem 2rem;">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4, #0891b2); color: var(--vtx-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin: 0 auto 1.25rem; letter-spacing: -0.02em;">RE</div>
+          <h4>Rachel Edwards</h4>
+          <p style="font-size: 0.875rem; color: var(--vtx-blue); font-weight: 600; margin-bottom: 0.5rem;">Head of Customer Success</p>
+          <p style="font-size: 0.875rem;">10 years in customer-facing roles at B2B SaaS companies. Champions the voice of the customer internally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <div class="section-label">Our Values</div>
+        <h2>What drives us every day</h2>
+        <p>Four principles that guide every decision we make — from product features to how we hire.</p>
+      </div>
+
+      <div class="grid-4">
+        <!-- Customer First -->
+        <div class="card reveal reveal-delay-1" style="padding: 2rem;">
+          <div class="card-icon blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Customer First</h4>
+          <p>Every feature, every fix, every roadmap decision starts with the question: does this make our customers' lives better?</p>
+        </div>
+
+        <!-- Move Fast -->
+        <div class="card reveal reveal-delay-2" style="padding: 2rem;">
+          <div class="card-icon emerald">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Move Fast</h4>
+          <p>Logistics never stops, and neither do we. We ship weekly, iterate constantly, and trust our teams to make decisions.</p>
+        </div>
+
+        <!-- Think Global -->
+        <div class="card reveal reveal-delay-3" style="padding: 2rem;">
+          <div class="card-icon amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Think Global</h4>
+          <p>We build for the world, not one market. Every feature considers language, regulation, and culture from day one.</p>
+        </div>
+
+        <!-- Stay Humble -->
+        <div class="card reveal reveal-delay-4" style="padding: 2rem;">
+          <div class="card-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <h4>Stay Humble</h4>
+          <p>The best ideas come from listening. We learn from drivers, dispatchers, and warehouse teams — not just dashboards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Join the future of last-mile delivery</h2>
+        <p>Whether you are a courier startup or an enterprise fleet, Virtus Transport gives you the tools to deliver smarter.</p>
+        <div class="btn-group">
+          <a href="signup.html" class="btn btn-primary">Start free trial</a>
+          <a href="contact.html" class="btn btn-white">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="color: var(--vtx-white);">
+            Virtus
+          </a>
+          <p>The complete last-mile management platform for courier and transport companies worldwide.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="product.html">Route Optimization</a>
+          <a href="product.html">Live Tracking</a>
+          <a href="product.html">Driver App</a>
+          <a href="product.html">Analytics</a>
+          <a href="product.html">API</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Blog</a>
+          <a href="resources.html">Case Studies</a>
+          <a href="resources.html">Guides</a>
+          <a href="docs.html">Documentation</a>
+          <a href="help.html">Help Centre</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About</a>
+          <a href="careers.html">Careers</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="partners.html">Partners</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Virtus Transport. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

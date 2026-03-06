@@ -1181,294 +1181,455 @@
     resize();
     window.addEventListener('resize', resize);
 
-    // Apple Maps-style colors
-    const MAP_BG = '#F5F0EB';
-    const ROAD_COLOR = '#FFFFFF';
-    const ROAD_OUTLINE = '#D9D2CA';
-    const ROAD_MINOR = '#EDEDED';
-    const PARK_COLOR = '#D4EDDA';
-    const WATER_COLOR = '#B8DBF0';
-    const BUILDING_COLOR = '#E4DDD5';
-    const ROUTE_BLUE = '#007AFF';
-    const ROUTE_GREEN = '#34C759';
-    const ROUTE_ORANGE = '#FF9500';
-
-    // Road network - grid of streets like a real city
-    const roads = {
-      // Major horizontal roads
-      majorH: [
-        { y: 0.18, x1: 0, x2: 1 },
-        { y: 0.42, x1: 0, x2: 1 },
-        { y: 0.65, x1: 0, x2: 1 },
-        { y: 0.85, x1: 0, x2: 1 },
-      ],
-      // Major vertical roads
-      majorV: [
-        { x: 0.15, y1: 0, y2: 1 },
-        { x: 0.38, y1: 0, y2: 1 },
-        { x: 0.62, y1: 0, y2: 1 },
-        { x: 0.85, y1: 0, y2: 1 },
-      ],
-      // Minor horizontal
-      minorH: [
-        { y: 0.08, x1: 0.05, x2: 0.95 },
-        { y: 0.28, x1: 0.1, x2: 0.9 },
-        { y: 0.52, x1: 0.05, x2: 0.95 },
-        { y: 0.75, x1: 0.1, x2: 0.9 },
-        { y: 0.93, x1: 0.05, x2: 0.95 },
-      ],
-      // Minor vertical
-      minorV: [
-        { x: 0.05, y1: 0.05, y2: 0.95 },
-        { x: 0.26, y1: 0.1, y2: 0.9 },
-        { x: 0.50, y1: 0.05, y2: 0.95 },
-        { x: 0.74, y1: 0.1, y2: 0.9 },
-        { x: 0.95, y1: 0.05, y2: 0.95 },
-      ]
+    // Apple Maps color palette (exact)
+    const COL = {
+      bg: '#EEE8E0',
+      landBlock: '#F5F0EB',
+      building: '#E2DBD2',
+      buildingShadow: '#D5CEC5',
+      highway: '#FBC64E',
+      highwayOutline: '#E5A825',
+      majorRoad: '#FFFFFF',
+      majorOutline: '#CBC4BA',
+      minorRoad: '#FFFFFF',
+      minorOutline: '#D9D2C9',
+      park: '#C8E6B4',
+      parkDark: '#B5D9A0',
+      water: '#A8D4F0',
+      waterEdge: '#8CC4E8',
+      river: '#A8D4F0',
+      sand: '#F0E8C8',
+      routeBlue: '#007AFF',
+      routeGreen: '#30D158',
+      routeOrange: '#FF9F0A',
+      label: '#6B6560',
     };
 
-    // Parks (green areas)
-    const parks = [
-      { x: 0.16, y: 0.20, w: 0.09, h: 0.07, r: 8 },
-      { x: 0.70, y: 0.44, w: 0.12, h: 0.08, r: 10 },
-      { x: 0.40, y: 0.68, w: 0.08, h: 0.06, r: 6 },
-      { x: 0.04, y: 0.55, w: 0.07, h: 0.08, r: 8 },
+    // Seeded random for consistent map
+    let seed = 42;
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+
+    function rr(x, y, w, h, r) {
+      r = Math.min(r, w / 2, h / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    // ---- RIVER (curved, natural shape) ----
+    const riverPts = [
+      [-0.05,0.12],[0.08,0.18],[0.18,0.14],[0.28,0.19],[0.38,0.15],
+      [0.50,0.20],[0.58,0.16],[0.68,0.22],[0.80,0.17],[0.92,0.21],[1.05,0.18]
     ];
 
-    // Water body
-    const water = { x: 0.78, y: 0.12, w: 0.20, h: 0.14, r: 20 };
+    function drawRiver() {
+      // River body
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(riverPts[0][0]*W, riverPts[0][1]*H);
+      for (let i=1; i<riverPts.length-1; i+=1) {
+        const xc = (riverPts[i][0]*W + riverPts[i+1][0]*W) / 2;
+        const yc = (riverPts[i][1]*H + riverPts[i+1][1]*H) / 2;
+        ctx.quadraticCurveTo(riverPts[i][0]*W, riverPts[i][1]*H, xc, yc);
+      }
+      const last = riverPts[riverPts.length-1];
+      ctx.lineTo(last[0]*W, last[1]*H);
+      // Close bottom to fill
+      ctx.lineTo(last[0]*W, (last[1]+0.06)*H);
+      for (let i=riverPts.length-1; i>=0; i--) {
+        ctx.lineTo(riverPts[i][0]*W, (riverPts[i][1]+0.055+Math.sin(i*1.2)*0.012)*H);
+      }
+      ctx.closePath();
+      ctx.fillStyle = COL.water;
+      ctx.fill();
+      // Edge highlight
+      ctx.beginPath();
+      ctx.moveTo(riverPts[0][0]*W, riverPts[0][1]*H);
+      for (let i=1; i<riverPts.length-1; i+=1) {
+        const xc = (riverPts[i][0]*W + riverPts[i+1][0]*W) / 2;
+        const yc = (riverPts[i][1]*H + riverPts[i+1][1]*H) / 2;
+        ctx.quadraticCurveTo(riverPts[i][0]*W, riverPts[i][1]*H, xc, yc);
+      }
+      ctx.strokeStyle = COL.waterEdge;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+    }
 
-    // Buildings (small blocks between roads)
-    const buildings = [];
-    for (let i = 0; i < 45; i++) {
-      buildings.push({
-        x: 0.04 + Math.random() * 0.92,
-        y: 0.04 + Math.random() * 0.92,
-        w: 0.02 + Math.random() * 0.04,
-        h: 0.02 + Math.random() * 0.03,
-        r: 2 + Math.random() * 2
+    // ---- PARKS (organic blobs) ----
+    const parks = [
+      { cx:0.12, cy:0.38, rx:0.055, ry:0.06, name:'Elm Park' },
+      { cx:0.72, cy:0.35, rx:0.07, ry:0.055, name:'Victoria Gardens' },
+      { cx:0.48, cy:0.78, rx:0.05, ry:0.045, name:'Riverside Green' },
+      { cx:0.88, cy:0.72, rx:0.045, ry:0.05, name:'' },
+    ];
+
+    function drawParks() {
+      parks.forEach(p => {
+        // Organic blob shape
+        ctx.beginPath();
+        const pts = 40;
+        for (let i = 0; i <= pts; i++) {
+          const a = (i / pts) * Math.PI * 2;
+          const wobble = 1 + 0.12 * Math.sin(a*3 + p.cx*20) + 0.08 * Math.cos(a*5 + p.cy*15);
+          const x = p.cx*W + Math.cos(a) * p.rx * W * wobble;
+          const y = p.cy*H + Math.sin(a) * p.ry * H * wobble;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.fillStyle = COL.park;
+        ctx.fill();
+        ctx.strokeStyle = COL.parkDark;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
+        // Tree dots inside park
+        seed = Math.floor(p.cx * 1000);
+        for (let t = 0; t < 12; t++) {
+          const ta = srand() * Math.PI * 2;
+          const tr = srand() * 0.6;
+          const tx = p.cx*W + Math.cos(ta) * p.rx * W * tr;
+          const ty = p.cy*H + Math.sin(ta) * p.ry * H * tr;
+          ctx.beginPath();
+          ctx.arc(tx, ty, 2 + srand()*2.5, 0, Math.PI*2);
+          ctx.fillStyle = COL.parkDark;
+          ctx.globalAlpha = 0.3 + srand()*0.2;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+
+        // Park name
+        if (p.name) {
+          ctx.font = '500 8px -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif';
+          ctx.fillStyle = '#4A7C3F';
+          ctx.textAlign = 'center';
+          ctx.fillText(p.name, p.cx*W, p.cy*H + 3);
+        }
       });
     }
 
-    // Delivery routes (waypoint arrays the vehicles follow along roads)
+    // ---- BUILDINGS (clustered in city blocks, realistic footprints) ----
+    const blockZones = [
+      // [x, y, w, h] — zones between major roads where buildings cluster
+      [0.02,0.25,0.14,0.11], [0.17,0.25,0.13,0.11], [0.35,0.25,0.12,0.11],
+      [0.02,0.44,0.14,0.12], [0.17,0.44,0.13,0.12], [0.35,0.44,0.12,0.12],
+      [0.52,0.25,0.13,0.11], [0.52,0.44,0.13,0.12], [0.68,0.44,0.12,0.12],
+      [0.02,0.60,0.14,0.12], [0.17,0.60,0.13,0.12], [0.35,0.60,0.12,0.12],
+      [0.52,0.60,0.13,0.12], [0.68,0.60,0.12,0.12], [0.82,0.44,0.14,0.12],
+      [0.82,0.60,0.14,0.12], [0.68,0.25,0.12,0.11], [0.82,0.25,0.14,0.11],
+      [0.02,0.78,0.14,0.10], [0.17,0.78,0.13,0.10], [0.35,0.78,0.12,0.10],
+      [0.52,0.78,0.13,0.10], [0.68,0.78,0.12,0.10], [0.82,0.78,0.14,0.10],
+    ];
+
+    let allBuildings = [];
+    function generateBuildings() {
+      allBuildings = [];
+      seed = 777;
+      blockZones.forEach(zone => {
+        const count = 4 + Math.floor(srand()*5);
+        for (let i = 0; i < count; i++) {
+          const bx = zone[0] + srand()*zone[2]*0.85;
+          const by = zone[1] + srand()*zone[3]*0.85;
+          const bw = 0.012 + srand()*0.025;
+          const bh = 0.008 + srand()*0.018;
+          const rot = (srand()-0.5)*0.15;
+          // Skip if overlapping park or river
+          let skip = false;
+          parks.forEach(p => {
+            const dx = bx - p.cx, dy = by - p.cy;
+            if (Math.abs(dx) < p.rx*1.2 && Math.abs(dy) < p.ry*1.2) skip = true;
+          });
+          if (by < 0.24 && by > 0.09) skip = true; // river zone
+          if (!skip) allBuildings.push({x:bx,y:by,w:bw,h:bh,rot:rot});
+        }
+      });
+    }
+    generateBuildings();
+
+    function drawBuildings() {
+      allBuildings.forEach(b => {
+        ctx.save();
+        ctx.translate(b.x*W + b.w*W/2, b.y*H + b.h*H/2);
+        ctx.rotate(b.rot);
+        // Shadow
+        ctx.fillStyle = COL.buildingShadow;
+        ctx.fillRect(-b.w*W/2 + 1, -b.h*H/2 + 1, b.w*W, b.h*H);
+        // Building
+        ctx.fillStyle = COL.building;
+        ctx.fillRect(-b.w*W/2, -b.h*H/2, b.w*W, b.h*H);
+        ctx.restore();
+      });
+    }
+
+    // ---- ROAD NETWORK (organic curves, not just grid) ----
+    // Road types: highway (curved), major, minor
+    const highways = [
+      // Main highway curving through the city (like a freeway)
+      { pts:[[0,0.40],[0.12,0.38],[0.25,0.41],[0.40,0.37],[0.55,0.40],[0.70,0.38],[0.85,0.42],[1.0,0.39]], w:12, label:'A1' },
+      // Vertical highway
+      { pts:[[0.48,0],[0.47,0.12],[0.50,0.25],[0.48,0.40],[0.50,0.55],[0.49,0.70],[0.50,0.85],[0.50,1.0]], w:12, label:'M4' },
+    ];
+
+    const majorRoads = [
+      // Horizontal
+      { pts:[[0,0.58],[0.20,0.57],[0.45,0.58],[0.70,0.57],[1.0,0.58]] },
+      { pts:[[0,0.75],[0.25,0.76],[0.50,0.75],[0.75,0.76],[1.0,0.75]] },
+      { pts:[[0,0.28],[0.22,0.27],[0.45,0.28],[0.68,0.27],[1.0,0.28]] },
+      // Vertical
+      { pts:[[0.18,0.09],[0.17,0.30],[0.18,0.55],[0.17,0.80],[0.18,1.0]] },
+      { pts:[[0.70,0.09],[0.69,0.30],[0.70,0.55],[0.69,0.80],[0.70,1.0]] },
+      { pts:[[0.35,0.09],[0.34,0.35],[0.35,0.55],[0.34,0.80],[0.35,1.0]] },
+      { pts:[[0.85,0.09],[0.84,0.35],[0.85,0.55],[0.84,0.80],[0.85,1.0]] },
+      // Diagonal
+      { pts:[[0.02,0.88],[0.15,0.78],[0.30,0.65],[0.42,0.58]] },
+    ];
+
+    const minorRoads = [
+      {pts:[[0,0.33],[0.30,0.34],[0.45,0.33]]},
+      {pts:[[0.55,0.33],[0.80,0.34],[1.0,0.33]]},
+      {pts:[[0,0.48],[0.30,0.47],[0.65,0.48],[1.0,0.47]]},
+      {pts:[[0,0.66],[0.25,0.67],[0.55,0.66],[0.80,0.67],[1.0,0.66]]},
+      {pts:[[0,0.84],[0.35,0.85],[0.65,0.84],[1.0,0.85]]},
+      {pts:[[0,0.92],[0.40,0.93],[0.75,0.92],[1.0,0.93]]},
+      {pts:[[0.08,0.09],[0.08,0.40],[0.07,0.70],[0.08,1.0]]},
+      {pts:[[0.28,0.09],[0.27,0.40],[0.28,0.70],[0.27,1.0]]},
+      {pts:[[0.42,0.45],[0.42,0.70],[0.41,1.0]]},
+      {pts:[[0.58,0.09],[0.57,0.40],[0.58,0.70],[0.57,1.0]]},
+      {pts:[[0.78,0.09],[0.77,0.40],[0.78,0.70],[0.77,1.0]]},
+      {pts:[[0.92,0.09],[0.93,0.40],[0.92,0.70],[0.93,1.0]]},
+    ];
+
+    function drawCurvedRoad(pts, outlineW, fillW, outlineCol, fillCol) {
+      // Outline
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0]*W, pts[0][1]*H);
+      for (let i=1;i<pts.length-1;i++) {
+        const xc = (pts[i][0]*W + pts[i+1][0]*W)/2;
+        const yc = (pts[i][1]*H + pts[i+1][1]*H)/2;
+        ctx.quadraticCurveTo(pts[i][0]*W, pts[i][1]*H, xc, yc);
+      }
+      const l = pts[pts.length-1];
+      ctx.lineTo(l[0]*W, l[1]*H);
+      ctx.strokeStyle = outlineCol;
+      ctx.lineWidth = outlineW;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+      // Fill
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0]*W, pts[0][1]*H);
+      for (let i=1;i<pts.length-1;i++) {
+        const xc = (pts[i][0]*W + pts[i+1][0]*W)/2;
+        const yc = (pts[i][1]*H + pts[i+1][1]*H)/2;
+        ctx.quadraticCurveTo(pts[i][0]*W, pts[i][1]*H, xc, yc);
+      }
+      ctx.lineTo(l[0]*W, l[1]*H);
+      ctx.strokeStyle = fillCol;
+      ctx.lineWidth = fillW;
+      ctx.stroke();
+    }
+
+    function drawRoads() {
+      // Minor roads first
+      minorRoads.forEach(r => drawCurvedRoad(r.pts, 4, 2.5, COL.minorOutline, COL.minorRoad));
+      // Major roads
+      majorRoads.forEach(r => drawCurvedRoad(r.pts, 9, 6.5, COL.majorOutline, COL.majorRoad));
+      // Highways
+      highways.forEach(hw => {
+        drawCurvedRoad(hw.pts, hw.w+3, hw.w, COL.highwayOutline, COL.highway);
+        // Center dashes
+        ctx.beginPath();
+        ctx.setLineDash([6,8]);
+        ctx.moveTo(hw.pts[0][0]*W, hw.pts[0][1]*H);
+        for (let i=1;i<hw.pts.length-1;i++) {
+          const xc = (hw.pts[i][0]*W + hw.pts[i+1][0]*W)/2;
+          const yc = (hw.pts[i][1]*H + hw.pts[i+1][1]*H)/2;
+          ctx.quadraticCurveTo(hw.pts[i][0]*W, hw.pts[i][1]*H, xc, yc);
+        }
+        ctx.lineTo(hw.pts[hw.pts.length-1][0]*W, hw.pts[hw.pts.length-1][1]*H);
+        ctx.strokeStyle = COL.highwayOutline;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]);
+      });
+    }
+
+    // ---- ROAD LABELS ----
+    const streetLabels = [
+      { text:'King St', x:0.22, y:0.275, rot:0 },
+      { text:'Bridge Rd', x:0.55, y:0.27, rot:0 },
+      { text:'Victoria Ave', x:0.175, y:0.50, rot:-Math.PI/2 },
+      { text:'High St', x:0.60, y:0.575, rot:0 },
+      { text:'Park Lane', x:0.25, y:0.575, rot:0 },
+      { text:'Mill Rd', x:0.705, y:0.50, rot:-Math.PI/2 },
+      { text:'Church St', x:0.35, y:0.50, rot:-Math.PI/2 },
+      { text:'Station Rd', x:0.55, y:0.755, rot:0 },
+      { text:'Oak Ave', x:0.85, y:0.50, rot:-Math.PI/2 },
+    ];
+
+    function drawLabels() {
+      ctx.font = '500 7px -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif';
+      ctx.fillStyle = COL.label;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      streetLabels.forEach(l => {
+        ctx.save();
+        ctx.translate(l.x*W, l.y*H);
+        ctx.rotate(l.rot);
+        // White halo
+        ctx.strokeStyle = 'rgba(245,240,235,0.85)';
+        ctx.lineWidth = 3;
+        ctx.lineJoin = 'round';
+        ctx.strokeText(l.text, 0, 0);
+        ctx.fillText(l.text, 0, 0);
+        ctx.restore();
+      });
+
+      // Highway shields
+      highways.forEach(hw => {
+        if (!hw.label) return;
+        const sx = hw.pts[3][0]*W, sy = hw.pts[3][1]*H;
+        rr(sx-10, sy-7, 20, 14, 3);
+        ctx.fillStyle = COL.highway;
+        ctx.fill();
+        ctx.strokeStyle = COL.highwayOutline;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.fillStyle = '#5C4A0E';
+        ctx.font = 'bold 7px -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(hw.label, sx, sy);
+      });
+    }
+
+    // ---- DELIVERY ROUTES ----
     const routes = [
       {
-        color: ROUTE_BLUE,
-        // Route 1: depot -> NW area deliveries
+        color: COL.routeBlue,
         waypoints: [
-          [0.38, 0.42], [0.38, 0.28], [0.26, 0.28], [0.26, 0.18],
-          [0.15, 0.18], [0.15, 0.08], [0.05, 0.08]
+          [0.35,0.40],[0.35,0.34],[0.28,0.34],[0.28,0.28],[0.18,0.28],
+          [0.18,0.33],[0.08,0.33],[0.08,0.28]
         ],
         vehicles: [
-          { progress: { v: 0 }, speed: 0.08 },
-          { progress: { v: 0.45 }, speed: 0.07 }
+          { progress:{v:0}, speed:0.06 },
+          { progress:{v:0.5}, speed:0.055 }
         ]
       },
       {
-        color: ROUTE_GREEN,
-        // Route 2: depot -> SE area deliveries
+        color: COL.routeGreen,
         waypoints: [
-          [0.38, 0.42], [0.50, 0.42], [0.50, 0.52], [0.62, 0.52],
-          [0.62, 0.65], [0.74, 0.65], [0.74, 0.75], [0.85, 0.75],
-          [0.85, 0.85], [0.95, 0.85]
+          [0.35,0.40],[0.42,0.40],[0.48,0.40],[0.48,0.48],[0.58,0.48],
+          [0.58,0.58],[0.70,0.58],[0.70,0.66],[0.78,0.66],[0.78,0.75],
+          [0.85,0.75],[0.85,0.85]
         ],
         vehicles: [
-          { progress: { v: 0 }, speed: 0.06 },
-          { progress: { v: 0.55 }, speed: 0.065 }
+          { progress:{v:0}, speed:0.045 },
+          { progress:{v:0.4}, speed:0.05 },
+          { progress:{v:0.75}, speed:0.048 }
         ]
       },
       {
-        color: ROUTE_ORANGE,
-        // Route 3: depot -> NE area
+        color: COL.routeOrange,
         waypoints: [
-          [0.38, 0.42], [0.50, 0.42], [0.50, 0.28], [0.62, 0.28],
-          [0.62, 0.18], [0.74, 0.18], [0.85, 0.18], [0.85, 0.08]
+          [0.35,0.40],[0.42,0.40],[0.48,0.40],[0.50,0.33],[0.50,0.28],
+          [0.58,0.28],[0.70,0.28],[0.70,0.20],[0.78,0.20],[0.85,0.20]
         ],
         vehicles: [
-          { progress: { v: 0.2 }, speed: 0.055 },
-          { progress: { v: 0.7 }, speed: 0.06 }
+          { progress:{v:0.15}, speed:0.05 },
+          { progress:{v:0.65}, speed:0.055 }
         ]
       },
       {
-        color: ROUTE_BLUE,
-        // Route 4: depot -> SW area
+        color: COL.routeBlue,
         waypoints: [
-          [0.38, 0.42], [0.26, 0.42], [0.26, 0.52], [0.15, 0.52],
-          [0.15, 0.65], [0.05, 0.65], [0.05, 0.75], [0.15, 0.85],
-          [0.26, 0.85]
+          [0.35,0.40],[0.35,0.48],[0.28,0.48],[0.28,0.58],[0.18,0.58],
+          [0.18,0.66],[0.18,0.75],[0.28,0.75],[0.28,0.85],[0.35,0.85]
         ],
         vehicles: [
-          { progress: { v: 0.1 }, speed: 0.07 },
-          { progress: { v: 0.6 }, speed: 0.065 }
+          { progress:{v:0.1}, speed:0.05 },
+          { progress:{v:0.55}, speed:0.048 }
         ]
       }
     ];
 
-    // Delivery stop pins along routes
+    // Delivery stops with labels
     const stops = [
-      // Route 1 stops
-      { x: 0.26, y: 0.18, color: ROUTE_BLUE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      { x: 0.05, y: 0.08, color: ROUTE_BLUE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      // Route 2 stops
-      { x: 0.62, y: 0.52, color: ROUTE_GREEN, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      { x: 0.85, y: 0.85, color: ROUTE_GREEN, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      // Route 3 stops
-      { x: 0.74, y: 0.18, color: ROUTE_ORANGE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      { x: 0.85, y: 0.08, color: ROUTE_ORANGE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      // Route 4 stops
-      { x: 0.05, y: 0.65, color: ROUTE_BLUE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
-      { x: 0.26, y: 0.85, color: ROUTE_BLUE, pulseR: { v: 0 }, pulseO: { v: 0.6 } },
+      { x:0.08, y:0.28, color:COL.routeBlue, label:'A', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.18, y:0.28, color:COL.routeBlue, label:'B', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.70, y:0.66, color:COL.routeGreen, label:'C', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.85, y:0.85, color:COL.routeGreen, label:'D', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.70, y:0.20, color:COL.routeOrange, label:'E', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.85, y:0.20, color:COL.routeOrange, label:'F', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.18, y:0.75, color:COL.routeBlue, label:'G', pulseR:{v:0}, pulseO:{v:0.5} },
+      { x:0.35, y:0.85, color:COL.routeBlue, label:'H', pulseR:{v:0}, pulseO:{v:0.5} },
     ];
 
-    // Depot marker
-    const depot = { x: 0.38, y: 0.42 };
+    const depot = { x:0.35, y:0.40 };
 
-    // Helper: get point along route waypoints at progress [0..1]
-    function getRoutePoint(waypoints, t) {
-      const totalSegments = waypoints.length - 1;
-      const seg = Math.min(Math.floor(t * totalSegments), totalSegments - 1);
-      const localT = (t * totalSegments) - seg;
-      const a = waypoints[seg];
-      const b = waypoints[seg + 1];
-      return [
-        a[0] + (b[0] - a[0]) * localT,
-        a[1] + (b[1] - a[1]) * localT
-      ];
+    function getRoutePoint(wp, t) {
+      const n = wp.length - 1;
+      const seg = Math.min(Math.floor(t * n), n - 1);
+      const lt = (t * n) - seg;
+      return [wp[seg][0]+(wp[seg+1][0]-wp[seg][0])*lt, wp[seg][1]+(wp[seg+1][1]-wp[seg][1])*lt];
     }
-
-    function getRouteAngle(waypoints, t) {
-      const dt = 0.005;
-      const p1 = getRoutePoint(waypoints, Math.max(0, t - dt));
-      const p2 = getRoutePoint(waypoints, Math.min(1, t + dt));
-      return Math.atan2((p2[1] - p1[1]) * H, (p2[0] - p1[0]) * W);
-    }
-
-    // Rounded rect helper
-    function roundRect(x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.lineTo(x + w - r, y);
-      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-      ctx.lineTo(x + w, y + h - r);
-      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      ctx.lineTo(x + r, y + h);
-      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-      ctx.lineTo(x, y + r);
-      ctx.quadraticCurveTo(x, y, x + r, y);
-      ctx.closePath();
-    }
-
-    function drawMap() {
-      // Background
-      ctx.fillStyle = MAP_BG;
-      ctx.fillRect(0, 0, W, H);
-
-      // Parks
-      ctx.fillStyle = PARK_COLOR;
-      parks.forEach(p => {
-        roundRect(p.x * W, p.y * H, p.w * W, p.h * H, p.r);
-        ctx.fill();
-      });
-
-      // Water
-      ctx.fillStyle = WATER_COLOR;
-      roundRect(water.x * W, water.y * H, water.w * W, water.h * H, water.r);
-      ctx.fill();
-
-      // Buildings (draw before roads so roads go on top)
-      ctx.fillStyle = BUILDING_COLOR;
-      buildings.forEach(b => {
-        roundRect(b.x * W, b.y * H, b.w * W, b.h * H, b.r);
-        ctx.fill();
-      });
-
-      // Minor roads
-      ctx.strokeStyle = ROAD_MINOR;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      roads.minorH.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x1 * W, r.y * H);
-        ctx.lineTo(r.x2 * W, r.y * H);
-        ctx.stroke();
-      });
-      roads.minorV.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x * W, r.y1 * H);
-        ctx.lineTo(r.x * W, r.y2 * H);
-        ctx.stroke();
-      });
-
-      // Major roads - outline
-      ctx.strokeStyle = ROAD_OUTLINE;
-      ctx.lineWidth = 10;
-      roads.majorH.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x1 * W, r.y * H);
-        ctx.lineTo(r.x2 * W, r.y * H);
-        ctx.stroke();
-      });
-      roads.majorV.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x * W, r.y1 * H);
-        ctx.lineTo(r.x * W, r.y2 * H);
-        ctx.stroke();
-      });
-
-      // Major roads - fill (white)
-      ctx.strokeStyle = ROAD_COLOR;
-      ctx.lineWidth = 7;
-      roads.majorH.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x1 * W, r.y * H);
-        ctx.lineTo(r.x2 * W, r.y * H);
-        ctx.stroke();
-      });
-      roads.majorV.forEach(r => {
-        ctx.beginPath();
-        ctx.moveTo(r.x * W, r.y1 * H);
-        ctx.lineTo(r.x * W, r.y2 * H);
-        ctx.stroke();
-      });
+    function getRouteAngle(wp, t) {
+      const d = 0.003;
+      const p1 = getRoutePoint(wp, Math.max(0,t-d));
+      const p2 = getRoutePoint(wp, Math.min(1,t+d));
+      return Math.atan2((p2[1]-p1[1])*H, (p2[0]-p1[0])*W);
     }
 
     function drawRoutes() {
       routes.forEach(route => {
+        // Route glow
+        ctx.beginPath();
+        route.waypoints.forEach((p,i) => {
+          i===0 ? ctx.moveTo(p[0]*W,p[1]*H) : ctx.lineTo(p[0]*W,p[1]*H);
+        });
         ctx.strokeStyle = route.color;
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 12;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.globalAlpha = 0.8;
-        ctx.beginPath();
-        route.waypoints.forEach((wp, i) => {
-          if (i === 0) ctx.moveTo(wp[0] * W, wp[1] * H);
-          else ctx.lineTo(wp[0] * W, wp[1] * H);
-        });
-        ctx.stroke();
-
-        // Route glow
-        ctx.strokeStyle = route.color;
-        ctx.lineWidth = 10;
-        ctx.globalAlpha = 0.12;
-        ctx.beginPath();
-        route.waypoints.forEach((wp, i) => {
-          if (i === 0) ctx.moveTo(wp[0] * W, wp[1] * H);
-          else ctx.lineTo(wp[0] * W, wp[1] * H);
-        });
+        ctx.globalAlpha = 0.15;
         ctx.stroke();
         ctx.globalAlpha = 1;
+
+        // Route outline (dark)
+        ctx.beginPath();
+        route.waypoints.forEach((p,i) => {
+          i===0 ? ctx.moveTo(p[0]*W,p[1]*H) : ctx.lineTo(p[0]*W,p[1]*H);
+        });
+        ctx.strokeStyle = route.color;
+        ctx.lineWidth = 6;
+        ctx.globalAlpha = 0.35;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+
+        // Route fill
+        ctx.beginPath();
+        route.waypoints.forEach((p,i) => {
+          i===0 ? ctx.moveTo(p[0]*W,p[1]*H) : ctx.lineTo(p[0]*W,p[1]*H);
+        });
+        ctx.strokeStyle = route.color;
+        ctx.lineWidth = 4;
+        ctx.stroke();
       });
     }
 
     function drawStops() {
       stops.forEach(stop => {
-        const sx = stop.x * W;
-        const sy = stop.y * H;
+        const sx = stop.x*W, sy = stop.y*H;
 
-        // Pulse ring
+        // Pulse
         if (stop.pulseR.v > 0) {
           ctx.beginPath();
-          ctx.arc(sx, sy, stop.pulseR.v, 0, Math.PI * 2);
+          ctx.arc(sx, sy, stop.pulseR.v, 0, Math.PI*2);
           ctx.strokeStyle = stop.color;
           ctx.lineWidth = 2;
           ctx.globalAlpha = stop.pulseO.v;
@@ -1476,136 +1637,193 @@
           ctx.globalAlpha = 1;
         }
 
-        // Pin shadow
+        // Apple Maps pin: teardrop shape
+        ctx.save();
+        ctx.translate(sx, sy);
+
+        // Shadow
         ctx.beginPath();
-        ctx.arc(sx, sy + 2, 6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.ellipse(0, 2, 7, 3, 0, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(0,0,0,0.12)';
         ctx.fill();
 
-        // Pin circle
+        // Pin body (teardrop)
         ctx.beginPath();
-        ctx.arc(sx, sy, 6, 0, Math.PI * 2);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(sx, sy, 6, 0, Math.PI * 2);
-        ctx.strokeStyle = stop.color;
-        ctx.lineWidth = 2.5;
-        ctx.stroke();
-
-        // Inner dot
-        ctx.beginPath();
-        ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
+        ctx.moveTo(0, 4);
+        ctx.bezierCurveTo(-5, -2, -9, -8, -9, -13);
+        ctx.arc(0, -13, 9, Math.PI, 0, false);
+        ctx.bezierCurveTo(9, -8, 5, -2, 0, 4);
+        ctx.closePath();
         ctx.fillStyle = stop.color;
         ctx.fill();
+
+        // White inner circle
+        ctx.beginPath();
+        ctx.arc(0, -13, 4.5, 0, Math.PI*2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+
+        // Label letter
+        ctx.font = 'bold 7px -apple-system, sans-serif';
+        ctx.fillStyle = stop.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(stop.label, 0, -12.5);
+
+        ctx.restore();
       });
     }
 
     function drawDepot() {
-      const dx = depot.x * W;
-      const dy = depot.y * H;
+      const dx = depot.x*W, dy = depot.y*H;
 
-      // Glow
-      const grd = ctx.createRadialGradient(dx, dy, 0, dx, dy, 20);
-      grd.addColorStop(0, 'rgba(0,122,255,0.2)');
-      grd.addColorStop(1, 'rgba(0,122,255,0)');
-      ctx.fillStyle = grd;
-      ctx.fillRect(dx - 20, dy - 20, 40, 40);
+      // Blue location pulse
+      ctx.beginPath();
+      ctx.arc(dx, dy, 22, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,122,255,0.08)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(dx, dy, 14, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,122,255,0.12)';
+      ctx.fill();
 
-      // Depot square
+      // White circle with blue border (like Apple Maps current location)
+      ctx.beginPath();
+      ctx.arc(dx, dy, 8, 0, Math.PI*2);
       ctx.fillStyle = '#FFFFFF';
-      ctx.shadowColor = 'rgba(0,0,0,0.15)';
-      ctx.shadowBlur = 8;
-      ctx.shadowOffsetY = 2;
-      roundRect(dx - 12, dy - 12, 24, 24, 6);
+      ctx.shadowColor = 'rgba(0,0,0,0.2)';
+      ctx.shadowBlur = 6;
+      ctx.shadowOffsetY = 1;
       ctx.fill();
       ctx.shadowColor = 'transparent';
       ctx.shadowBlur = 0;
       ctx.shadowOffsetY = 0;
 
-      ctx.strokeStyle = ROUTE_BLUE;
-      ctx.lineWidth = 2;
-      roundRect(dx - 12, dy - 12, 24, 24, 6);
+      ctx.beginPath();
+      ctx.arc(dx, dy, 8, 0, Math.PI*2);
+      ctx.strokeStyle = COL.routeBlue;
+      ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      // Warehouse icon inside
-      ctx.fillStyle = ROUTE_BLUE;
-      ctx.fillRect(dx - 5, dy - 3, 10, 8);
+      // Inner blue dot
       ctx.beginPath();
-      ctx.moveTo(dx - 7, dy - 3);
-      ctx.lineTo(dx, dy - 8);
-      ctx.lineTo(dx + 7, dy - 3);
-      ctx.closePath();
+      ctx.arc(dx, dy, 4, 0, Math.PI*2);
+      ctx.fillStyle = COL.routeBlue;
       ctx.fill();
+
+      // "Depot" label
+      ctx.font = 'bold 8px -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = COL.routeBlue;
+      // Halo
+      ctx.strokeStyle = 'rgba(245,240,235,0.9)';
+      ctx.lineWidth = 3;
+      ctx.lineJoin = 'round';
+      ctx.strokeText('Depot', dx, dy - 16);
+      ctx.fillText('Depot', dx, dy - 16);
     }
 
     function drawVehicles() {
       routes.forEach(route => {
-        route.vehicles.forEach(vehicle => {
-          const t = vehicle.progress.v % 1;
+        route.vehicles.forEach(v => {
+          const t = v.progress.v % 1;
           const pt = getRoutePoint(route.waypoints, t);
           const angle = getRouteAngle(route.waypoints, t);
-          const vx = pt[0] * W;
-          const vy = pt[1] * H;
+          const vx = pt[0]*W, vy = pt[1]*H;
 
           ctx.save();
           ctx.translate(vx, vy);
           ctx.rotate(angle);
 
-          // Vehicle shadow
+          // Shadow
+          ctx.beginPath();
+          ctx.ellipse(0, 3, 9, 4, 0, 0, Math.PI*2);
           ctx.fillStyle = 'rgba(0,0,0,0.1)';
-          roundRect(-8, -4 + 2, 16, 10, 3);
           ctx.fill();
 
-          // Vehicle body
-          ctx.fillStyle = route.color;
-          roundRect(-8, -5, 16, 10, 3);
+          // Van body
+          rr(-10, -6, 20, 12, 3);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.shadowColor = 'rgba(0,0,0,0.15)';
+          ctx.shadowBlur = 4;
           ctx.fill();
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+
+          rr(-10, -6, 20, 12, 3);
+          ctx.strokeStyle = route.color;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          // Cargo area colored
+          rr(-9, -5, 12, 10, 2);
+          ctx.fillStyle = route.color;
+          ctx.globalAlpha = 0.2;
+          ctx.fill();
+          ctx.globalAlpha = 1;
 
           // Windshield
-          ctx.fillStyle = 'rgba(255,255,255,0.6)';
-          ctx.fillRect(4, -3, 3, 6);
+          ctx.fillStyle = '#B8D4F0';
+          rr(5, -4, 4, 8, 1.5);
+          ctx.fill();
 
+          ctx.restore();
+
+          // Direction indicator (small chevron arrow above)
+          ctx.save();
+          ctx.translate(vx, vy);
+          ctx.rotate(angle);
+          ctx.beginPath();
+          ctx.moveTo(14, 0);
+          ctx.lineTo(10, -3);
+          ctx.lineTo(10, 3);
+          ctx.closePath();
+          ctx.fillStyle = route.color;
+          ctx.globalAlpha = 0.6;
+          ctx.fill();
+          ctx.globalAlpha = 1;
           ctx.restore();
         });
       });
     }
 
     // GSAP animations
-    // Animate vehicle progress looping
     routes.forEach(route => {
-      route.vehicles.forEach(vehicle => {
-        gsap.to(vehicle.progress, {
-          v: vehicle.progress.v + 1,
-          duration: (1 / vehicle.speed) * 1,
+      route.vehicles.forEach(v => {
+        gsap.to(v.progress, {
+          v: v.progress.v + 1,
+          duration: 1 / v.speed,
           repeat: -1,
           ease: 'none'
         });
       });
     });
 
-    // Pulse delivery stops
     stops.forEach((stop, i) => {
       gsap.to(stop.pulseR, {
-        v: 18,
-        duration: 2,
-        repeat: -1,
-        ease: 'power1.out',
-        delay: i * 0.3
+        v: 20, duration: 2.5, repeat: -1,
+        ease: 'power1.out', delay: i * 0.35
       });
       gsap.to(stop.pulseO, {
-        v: 0,
-        duration: 2,
-        repeat: -1,
-        ease: 'power1.out',
-        delay: i * 0.3
+        v: 0, duration: 2.5, repeat: -1,
+        ease: 'power1.out', delay: i * 0.35
       });
     });
 
-    // Render loop
+    // Render
     function render() {
       ctx.clearRect(0, 0, W, H);
-      drawMap();
+      // Map layers (back to front)
+      ctx.fillStyle = COL.bg;
+      ctx.fillRect(0, 0, W, H);
+      // Land blocks
+      ctx.fillStyle = COL.landBlock;
+      ctx.fillRect(0, 0, W, H);
+      drawBuildings();
+      drawParks();
+      drawRiver();
+      drawRoads();
+      drawLabels();
       drawRoutes();
       drawStops();
       drawDepot();

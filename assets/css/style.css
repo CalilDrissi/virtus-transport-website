@@ -537,91 +537,10 @@ p { color: var(--vtx-muted); line-height: 1.7; }
 }
 
 /* ---- Dashboard Mock ---- */
-.dashboard-mock {
-  background: var(--vtx-white);
-  border-radius: 0.75rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  overflow: hidden;
-  border: 1px solid rgba(203, 213, 225, 0.4);
-}
-
-.dashboard-topbar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--vtx-snow);
-  border-bottom: 1px solid rgba(203, 213, 225, 0.4);
-}
-
-.dashboard-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.dashboard-body {
-  padding: 1.5rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.dashboard-sidebar {
-  width: 140px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.dashboard-sidebar-item {
-  height: 10px;
-  background: var(--vtx-snow);
-  border-radius: 4px;
-}
-.dashboard-sidebar-item.active {
-  background: var(--vtx-blue-pale);
-}
-
-.dashboard-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.dashboard-chart {
-  height: 100px;
-  background: linear-gradient(180deg, var(--vtx-blue-pale) 0%, transparent 100%);
-  border-radius: 0.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.dashboard-chart::after {
-  content: '';
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--vtx-blue);
-  clip-path: polygon(0 100%, 5% 80%, 15% 90%, 25% 40%, 35% 60%, 45% 20%, 55% 35%, 65% 10%, 75% 25%, 85% 5%, 95% 15%, 100% 0%, 100% 100%);
-  height: 100%;
-  opacity: 0.3;
-}
-
-.dashboard-row {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dashboard-card {
-  flex: 1;
-  height: 48px;
-  background: var(--vtx-snow);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(203, 213, 225, 0.3);
+#hero-animation {
+  background: linear-gradient(135deg, #f8faff 0%, #eef2ff 50%, #f0fdf9 100%);
+  border: 1px solid rgba(37, 99, 235, 0.08);
+  box-shadow: 0 8px 40px rgba(37, 99, 235, 0.06), 0 2px 12px rgba(0,0,0,0.03);
 }
 
 /* ---- Code Block ---- */
@@ -1074,9 +993,9 @@ body::after {
     padding: 2.5rem 1.5rem;
   }
 
-  /* Dashboard mock — remove perspective on mobile */
-  .dashboard-mock {
-    transform: none !important;
+  /* Hero animation — smaller on mobile */
+  #hero-animation {
+    height: 300px !important;
   }
 
   /* Nav logo text */

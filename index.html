@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 </head>
 <body>
 
@@ -69,53 +71,79 @@
           </div>
         </div>
         <div class="reveal reveal-delay-2">
-          <div class="dashboard-mock" style="transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);">
-            <div class="dashboard-topbar">
-              <div class="dashboard-dot" style="background: #f43f5e;"></div>
-              <div class="dashboard-dot" style="background: #f59e0b;"></div>
-              <div class="dashboard-dot" style="background: #10b981;"></div>
-              <span style="margin-left: auto; font-size: 0.75rem; color: var(--vtx-muted); font-family: var(--font-mono);">virtus.app/dispatch</span>
-            </div>
-            <div class="dashboard-body" style="min-height: 260px;">
-              <div class="dashboard-sidebar">
-                <div class="dashboard-sidebar-item active" style="width: 80%;"></div>
-                <div class="dashboard-sidebar-item" style="width: 100%;"></div>
-                <div class="dashboard-sidebar-item" style="width: 60%;"></div>
-                <div class="dashboard-sidebar-item" style="width: 90%;"></div>
-                <div class="dashboard-sidebar-item" style="width: 70%;"></div>
-                <div class="dashboard-sidebar-item" style="width: 50%;"></div>
-              </div>
-              <div class="dashboard-main">
-                <div class="dashboard-row">
-                  <div class="dashboard-card" style="position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 8px; left: 10px; font-size: 0.6rem; color: var(--vtx-muted); font-family: var(--font-mono);">Active Routes</div>
-                    <div style="position: absolute; bottom: 8px; left: 10px; font-size: 1.1rem; font-weight: 800; color: var(--vtx-navy); font-family: var(--font-display);">24</div>
-                  </div>
-                  <div class="dashboard-card" style="position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 8px; left: 10px; font-size: 0.6rem; color: var(--vtx-muted); font-family: var(--font-mono);">Deliveries Today</div>
-                    <div style="position: absolute; bottom: 8px; left: 10px; font-size: 1.1rem; font-weight: 800; color: var(--vtx-navy); font-family: var(--font-display);">847</div>
-                  </div>
-                  <div class="dashboard-card" style="position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 8px; left: 10px; font-size: 0.6rem; color: var(--vtx-muted); font-family: var(--font-mono);">On Time</div>
-                    <div style="position: absolute; bottom: 8px; left: 10px; font-size: 1.1rem; font-weight: 800; color: var(--vtx-emerald); font-family: var(--font-display);">98.2%</div>
-                  </div>
-                </div>
-                <div class="dashboard-chart" style="flex: 1;">
-                  <div style="position: absolute; top: 8px; left: 10px; font-size: 0.6rem; color: var(--vtx-muted); font-family: var(--font-mono);">Delivery Performance — Last 7 Days</div>
-                </div>
-                <div style="display: flex; gap: 0.5rem;">
-                  <div style="flex:2; height: 80px; background: linear-gradient(135deg, #e8edf5, #dce3ed); border-radius: 0.5rem; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 8px; left: 10px; font-size: 0.6rem; color: var(--vtx-muted); font-family: var(--font-mono);">Route Map</div>
-                    <!-- Map dots -->
-                    <div style="position: absolute; width: 8px; height: 8px; background: var(--vtx-blue); border-radius: 50%; top: 35%; left: 25%; box-shadow: 0 0 0 3px rgba(37,99,235,0.2);"></div>
-                    <div style="position: absolute; width: 8px; height: 8px; background: var(--vtx-blue); border-radius: 50%; top: 55%; left: 50%; box-shadow: 0 0 0 3px rgba(37,99,235,0.2);"></div>
-                    <div style="position: absolute; width: 8px; height: 8px; background: var(--vtx-emerald); border-radius: 50%; top: 40%; left: 72%; box-shadow: 0 0 0 3px rgba(16,185,129,0.2);"></div>
-                    <div style="position: absolute; width: 6px; height: 6px; background: var(--vtx-amber); border-radius: 50%; top: 65%; left: 35%; box-shadow: 0 0 0 3px rgba(245,158,11,0.2);"></div>
-                  </div>
-                  <div class="dashboard-card" style="flex:1;"></div>
-                </div>
-              </div>
-            </div>
+          <div id="hero-animation" style="width: 100%; height: 480px; position: relative; overflow: hidden; border-radius: 1.5rem;">
+            <svg id="route-svg" width="100%" height="100%" viewBox="0 0 560 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; inset: 0;">
+              <!-- Grid pattern -->
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(37,99,235,0.06)" stroke-width="1"/>
+                </pattern>
+                <radialGradient id="glow-blue" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="glow-emerald" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="blur-sm">
+                  <feGaussianBlur stdDeviation="2"/>
+                </filter>
+              </defs>
+              <rect width="560" height="480" fill="url(#grid)"/>
+
+              <!-- Hub glow -->
+              <circle class="hub-glow" cx="280" cy="240" r="80" fill="url(#glow-blue)" opacity="0"/>
+
+              <!-- Route paths -->
+              <path class="route-path" d="M 280 240 Q 180 180 80 120" stroke="#2563EB" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+              <path class="route-path" d="M 280 240 Q 350 150 480 80" stroke="#2563EB" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+              <path class="route-path" d="M 280 240 Q 200 300 60 360" stroke="#2563EB" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+              <path class="route-path" d="M 280 240 Q 380 310 500 380" stroke="#2563EB" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+              <path class="route-path" d="M 280 240 Q 280 140 320 40" stroke="#10b981" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+              <path class="route-path" d="M 280 240 Q 280 340 240 440" stroke="#10b981" stroke-width="2" stroke-dasharray="6 4" opacity="0" fill="none"/>
+
+              <!-- Destination markers -->
+              <circle class="dest-marker" cx="80" cy="120" r="0" fill="#2563EB" opacity="0"/>
+              <circle class="dest-ring" cx="80" cy="120" r="0" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0"/>
+              <circle class="dest-marker" cx="480" cy="80" r="0" fill="#2563EB" opacity="0"/>
+              <circle class="dest-ring" cx="480" cy="80" r="0" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0"/>
+              <circle class="dest-marker" cx="60" cy="360" r="0" fill="#2563EB" opacity="0"/>
+              <circle class="dest-ring" cx="60" cy="360" r="0" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0"/>
+              <circle class="dest-marker" cx="500" cy="380" r="0" fill="#2563EB" opacity="0"/>
+              <circle class="dest-ring" cx="500" cy="380" r="0" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0"/>
+              <circle class="dest-marker" cx="320" cy="40" r="0" fill="#10b981" opacity="0"/>
+              <circle class="dest-ring" cx="320" cy="40" r="0" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0"/>
+              <circle class="dest-marker" cx="240" cy="440" r="0" fill="#10b981" opacity="0"/>
+              <circle class="dest-ring" cx="240" cy="440" r="0" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0"/>
+
+              <!-- Moving delivery vehicles (small squares = packages/trucks) -->
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#2563EB" opacity="0"/>
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#2563EB" opacity="0"/>
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#10b981" opacity="0"/>
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#2563EB" opacity="0"/>
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#10b981" opacity="0"/>
+              <rect class="vehicle" x="-5" y="-5" width="10" height="10" rx="2" fill="#2563EB" opacity="0"/>
+
+              <!-- Central hub -->
+              <circle class="hub-outer" cx="280" cy="240" r="0" fill="white" stroke="#2563EB" stroke-width="2.5" opacity="0"/>
+              <circle class="hub-inner" cx="280" cy="240" r="0" fill="#2563EB" opacity="0"/>
+
+              <!-- Floating particles -->
+              <circle class="particle" cx="140" cy="90" r="2" fill="#2563EB" opacity="0"/>
+              <circle class="particle" cx="420" cy="130" r="2.5" fill="#10b981" opacity="0"/>
+              <circle class="particle" cx="100" cy="280" r="1.5" fill="#2563EB" opacity="0"/>
+              <circle class="particle" cx="460" cy="300" r="2" fill="#f59e0b" opacity="0"/>
+              <circle class="particle" cx="350" cy="420" r="1.5" fill="#2563EB" opacity="0"/>
+              <circle class="particle" cx="200" cy="400" r="2" fill="#10b981" opacity="0"/>
+              <circle class="particle" cx="380" cy="60" r="1.5" fill="#f59e0b" opacity="0"/>
+              <circle class="particle" cx="160" cy="190" r="2" fill="#10b981" opacity="0"/>
+
+              <!-- Pulse rings from hub (animated) -->
+              <circle class="pulse-ring" cx="280" cy="240" r="20" fill="none" stroke="#2563EB" stroke-width="1" opacity="0"/>
+              <circle class="pulse-ring" cx="280" cy="240" r="20" fill="none" stroke="#2563EB" stroke-width="1" opacity="0"/>
+              <circle class="pulse-ring" cx="280" cy="240" r="20" fill="none" stroke="#2563EB" stroke-width="1" opacity="0"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -1207,5 +1235,130 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+  (function(){
+    gsap.registerPlugin(MotionPathPlugin);
+    const paths = document.querySelectorAll('.route-path');
+    const markers = document.querySelectorAll('.dest-marker');
+    const rings = document.querySelectorAll('.dest-ring');
+    const vehicles = document.querySelectorAll('.vehicle');
+    const particles = document.querySelectorAll('.particle');
+    const pulseRings = document.querySelectorAll('.pulse-ring');
+    const hubGlow = document.querySelector('.hub-glow');
+    const hubOuter = document.querySelector('.hub-outer');
+    const hubInner = document.querySelector('.hub-inner');
+
+    // Master timeline
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    // 1. Hub appears
+    tl.to(hubGlow, { opacity: 1, duration: 0.8, ease: 'power2.out' })
+      .to(hubOuter, { r: 18, opacity: 1, duration: 0.5, ease: 'back.out(2)' }, '-=0.5')
+      .to(hubInner, { r: 7, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, '-=0.3');
+
+    // 2. Routes draw out from hub
+    paths.forEach((path, i) => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      tl.to(path, {
+        strokeDashoffset: 0,
+        opacity: 0.5,
+        duration: 0.8,
+        ease: 'power2.inOut'
+      }, '-=0.65');
+    });
+
+    // 3. Destination markers pop in
+    markers.forEach((m, i) => {
+      tl.to(m, { r: 5, opacity: 1, duration: 0.3, ease: 'back.out(3)' }, '-=0.5');
+    });
+    rings.forEach((r, i) => {
+      tl.to(r, { r: 12, opacity: 0.4, duration: 0.4, ease: 'power2.out' }, '-=0.6');
+    });
+
+    // 4. Vehicles animate along paths continuously
+    vehicles.forEach((v, i) => {
+      const path = paths[i];
+      if (!path) return;
+      gsap.set(v, { opacity: 0.9 });
+      const motionPath = {
+        path: path,
+        align: path,
+        alignOrigin: [0.5, 0.5],
+        autoRotate: true
+      };
+      // Stagger start, loop forever
+      gsap.to(v, {
+        motionPath: motionPath,
+        duration: 3 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        delay: 1.5 + i * 0.4,
+        onStart: function() { gsap.set(v, { opacity: 0.9 }); }
+      });
+    });
+
+    // 5. Floating particles drift
+    particles.forEach((p, i) => {
+      const startX = parseFloat(p.getAttribute('cx'));
+      const startY = parseFloat(p.getAttribute('cy'));
+      gsap.set(p, { opacity: 0 });
+      tl.to(p, { opacity: 0.5, duration: 0.4 }, '-=0.7');
+      gsap.to(p, {
+        cx: startX + (Math.random() - 0.5) * 40,
+        cy: startY + (Math.random() - 0.5) * 40,
+        duration: 3 + Math.random() * 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: Math.random() * 2
+      });
+    });
+
+    // 6. Pulse rings from hub (continuous)
+    pulseRings.forEach((ring, i) => {
+      gsap.to(ring, {
+        r: 120,
+        opacity: 0,
+        duration: 3,
+        repeat: -1,
+        ease: 'power1.out',
+        delay: 2 + i * 1,
+        onRepeat: function() {
+          gsap.set(ring, { r: 20, opacity: 0.3 });
+        },
+        onStart: function() {
+          gsap.set(ring, { opacity: 0.3 });
+        }
+      });
+    });
+
+    // 7. Destination rings pulse
+    rings.forEach((ring) => {
+      gsap.to(ring, {
+        r: 18,
+        opacity: 0,
+        duration: 2,
+        repeat: -1,
+        ease: 'power1.out',
+        delay: 2.5 + Math.random(),
+        onRepeat: function() {
+          gsap.set(ring, { r: 12, opacity: 0.4 });
+        }
+      });
+    });
+
+    // 8. Subtle hub breathing
+    gsap.to(hubGlow, {
+      opacity: 0.6,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: 2
+    });
+  })();
+  </script>
 </body>
 </html>

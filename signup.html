@@ -224,7 +224,17 @@
   <nav class="nav" style="position: relative; background: white; border-bottom: 1px solid rgba(203,213,225,0.4);">
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">Virtus</a>
-      <a href="login.html" style="font-size: 0.9375rem; font-weight: 500; color: var(--vtx-muted);">Log in</a>
+      <div class="nav-links">
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+  <a href="resources.html" data-i18n="nav.resources">Resources</a>
+</div>
+<div class="nav-cta">
+  <span id="lang-switch-nav"></span>
+  <a href="login.html" class="btn btn-secondary" data-i18n="nav.login">Log in</a>
+  <a href="signup.html" class="btn btn-primary" data-i18n="nav.trial">Start free trial</a>
+</div>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -310,10 +320,47 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer style="padding: 2rem 0; text-align: center; font-size: 0.8125rem; color: var(--vtx-steel);">
+  <footer class="footer">
     <div class="container">
-      <span>&copy; 2026 Virtus Transport. All rights reserved.</span>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="color: var(--vtx-white);">
+            Virtus
+          </a>
+          <p data-i18n="footer.tagline">The complete last-mile delivery management platform for modern transport companies.</p>
+          <div style="margin-top: 1rem;" id="lang-switch-footer"></div>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.product">Product</h5>
+          <a href="product.html">Route Optimization</a>
+          <a href="product.html">Live Tracking</a>
+          <a href="product.html">Driver App</a>
+          <a href="product.html" data-i18n="solution.analytics">Analytics</a>
+          <a href="product.html">API</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.resources">Resources</h5>
+          <a href="resources.html" data-i18n="footer.blog">Blog</a>
+          <a href="resources.html" data-i18n="footer.guides">Guides</a>
+          <a href="docs.html" data-i18n="footer.docs">Documentation</a>
+          <a href="help.html" data-i18n="footer.help">Help Centre</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.company">Company</h5>
+          <a href="about.html" data-i18n="footer.about">About</a>
+          <a href="careers.html" data-i18n="footer.careers">Careers</a>
+          <a href="pricing.html" data-i18n="footer.pricing">Pricing</a>
+          <a href="contact.html" data-i18n="footer.contact">Contact</a>
+          <a href="partners.html" data-i18n="footer.partners">Partners</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">&copy; 2026 Virtus Transport. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="terms.html" data-i18n="footer.terms">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -331,6 +378,8 @@
       }
     }
   </script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 </html>

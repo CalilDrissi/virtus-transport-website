@@ -16,8 +16,16 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">Virtus</a>
-      <div class="nav-links"><a href="product.html">Product</a><a href="pricing.html">Pricing</a><a href="resources.html">Resources</a></div>
-      <div class="nav-cta"><a href="login.html" class="btn btn-secondary">Log in</a><a href="signup.html" class="btn btn-primary">Start free trial</a></div>
+      <div class="nav-links">
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+  <a href="resources.html" data-i18n="nav.resources">Resources</a>
+</div>
+<div class="nav-cta">
+  <span id="lang-switch-nav"></span>
+  <a href="login.html" class="btn btn-secondary" data-i18n="nav.login">Log in</a>
+  <a href="signup.html" class="btn btn-primary" data-i18n="nav.trial">Start free trial</a>
+</div>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -281,14 +289,47 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><a href="index.html" class="nav-logo" style="color: var(--vtx-white);">Virtus</a><p>The complete last-mile management platform for courier and transport companies worldwide.</p></div>
-        <div class="footer-col"><h5>Product</h5><a href="product.html">Route Optimization</a><a href="product.html">Live Tracking</a><a href="product.html">Driver App</a><a href="product.html">Analytics</a><a href="product.html">API</a></div>
-        <div class="footer-col"><h5>Resources</h5><a href="resources.html">Blog</a><a href="resources.html">Case Studies</a><a href="resources.html">Guides</a><a href="docs.html">Documentation</a><a href="help.html">Help Centre</a></div>
-        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="careers.html">Careers</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="partners.html">Partners</a></div>
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="color: var(--vtx-white);">
+            Virtus
+          </a>
+          <p data-i18n="footer.tagline">The complete last-mile delivery management platform for modern transport companies.</p>
+          <div style="margin-top: 1rem;" id="lang-switch-footer"></div>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.product">Product</h5>
+          <a href="product.html">Route Optimization</a>
+          <a href="product.html">Live Tracking</a>
+          <a href="product.html">Driver App</a>
+          <a href="product.html" data-i18n="solution.analytics">Analytics</a>
+          <a href="product.html">API</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.resources">Resources</h5>
+          <a href="resources.html" data-i18n="footer.blog">Blog</a>
+          <a href="resources.html" data-i18n="footer.guides">Guides</a>
+          <a href="docs.html" data-i18n="footer.docs">Documentation</a>
+          <a href="help.html" data-i18n="footer.help">Help Centre</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.company">Company</h5>
+          <a href="about.html" data-i18n="footer.about">About</a>
+          <a href="careers.html" data-i18n="footer.careers">Careers</a>
+          <a href="pricing.html" data-i18n="footer.pricing">Pricing</a>
+          <a href="contact.html" data-i18n="footer.contact">Contact</a>
+          <a href="partners.html" data-i18n="footer.partners">Partners</a>
+        </div>
       </div>
-      <div class="footer-bottom"><span>&copy; 2026 Virtus Transport. All rights reserved.</span><div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="#">Cookie Settings</a></div></div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">&copy; 2026 Virtus Transport. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="terms.html" data-i18n="footer.terms">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

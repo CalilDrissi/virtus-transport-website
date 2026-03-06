@@ -20,13 +20,14 @@
         Virtus
       </a>
       <div class="nav-links">
-        <a href="product.html">Product</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="resources.html">Resources</a>
+        <a href="product.html" data-i18n="nav.product">Product</a>
+        <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+        <a href="resources.html" data-i18n="nav.resources">Resources</a>
       </div>
       <div class="nav-cta">
-        <a href="login.html" class="btn btn-secondary">Log in</a>
-        <a href="signup.html" class="btn btn-primary">Start free trial</a>
+        <span id="lang-switch-nav"></span>
+        <a href="login.html" class="btn btn-secondary" data-i18n="nav.login">Log in</a>
+        <a href="signup.html" class="btn btn-primary" data-i18n="nav.trial">Start free trial</a>
       </div>
       <button class="nav-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -49,31 +50,31 @@
         <div class="reveal">
           <div class="hero-badge">
             <span class="hero-badge-dot"></span>
-            Now with AI-powered route optimization
+            <span data-i18n="hero.badge">Now with AI-powered route optimization</span>
           </div>
-          <h1 style="margin-bottom: 1.25rem;">Faster routes.<br>More deliveries.<br>Zero stress.</h1>
-          <p class="text-lg" style="max-width: 440px; margin-bottom: 2rem;">
+          <h1 style="margin-bottom: 1.25rem;" data-i18n="hero.title">Faster routes.<br>More deliveries.<br>Zero stress.</h1>
+          <p class="text-lg" style="max-width: 440px; margin-bottom: 2rem;" data-i18n="hero.desc">
             Meet your new dispatch dashboard. Virtus Transport gives you full control over every route, driver, and delivery — in real time.
           </p>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
             <a href="signup.html" class="btn btn-primary">
-              Start free trial
+              <span data-i18n="cta.trial">Start free trial</span>
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
             </a>
-            <a href="demo.html" class="btn btn-secondary">Book a demo</a>
+            <a href="demo.html" class="btn btn-secondary" data-i18n="cta.demo">Book a demo</a>
           </div>
           <div class="badge-row">
             <div class="badge-item">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
-              No credit card required
+              <span data-i18n="hero.nocc">No credit card required</span>
             </div>
             <div class="badge-item">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
-              14-day free trial
+              <span data-i18n="hero.freetrial">14-day free trial</span>
             </div>
             <div class="badge-item">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
-              Setup in 5 minutes
+              <span data-i18n="hero.setup">Setup in 5 minutes</span>
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@
   <!-- ===== SOCIAL PROOF ===== -->
   <section style="padding: 2rem 0 3rem; border-top: 1px solid rgba(203,213,225,0.3); border-bottom: 1px solid rgba(203,213,225,0.3);">
     <div class="container" style="text-align: center;">
-      <p class="text-sm" style="color: var(--vtx-muted); margin-bottom: 1.5rem; font-weight: 500;">Trusted by transport companies across 30+ countries</p>
+      <p class="text-sm" style="color: var(--vtx-muted); margin-bottom: 1.5rem; font-weight: 500;" data-i18n="social.trust">Trusted by transport companies across 30+ countries</p>
       <div style="display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; opacity: 0.35;">
         <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;">DHL Express</span>
         <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;">FedEx</span>
@@ -100,9 +101,9 @@
   <section class="section" id="solution">
     <div class="container">
       <div class="section-header centered reveal">
-        <span class="section-label">Platform</span>
-        <h2>A complete solution for<br>last mile management</h2>
-        <p>From route planning to proof of delivery, Virtus gives your operations team everything they need in one powerful platform.</p>
+        <span class="section-label" data-i18n="solution.label">Platform</span>
+        <h2 data-i18n="solution.title">A complete solution for<br>last mile management</h2>
+        <p data-i18n="solution.desc">From route planning to proof of delivery, Virtus gives your operations team everything they need in one powerful platform.</p>
       </div>
 
       <!-- Solution illustration: abstract 3D cube -->
@@ -121,29 +122,29 @@
           <div class="card-icon blue" style="margin: 0 auto 1rem;">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
-          <h4>Orders</h4>
-          <p class="text-sm">Import, manage, and track every delivery order from a single view.</p>
+          <h4 data-i18n="solution.orders">Orders</h4>
+          <p class="text-sm" data-i18n="solution.orders.desc">Import, manage, and track every delivery order from a single view.</p>
         </div>
         <div class="card" style="text-align: center; padding: 1.5rem;">
           <div class="card-icon emerald" style="margin: 0 auto 1rem;">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <h4>Dispatching</h4>
-          <p class="text-sm">Auto-assign drivers and optimise routes with a single click.</p>
+          <h4 data-i18n="solution.dispatch">Dispatching</h4>
+          <p class="text-sm" data-i18n="solution.dispatch.desc">Auto-assign drivers and optimise routes with a single click.</p>
         </div>
         <div class="card" style="text-align: center; padding: 1.5rem;">
           <div class="card-icon amber" style="margin: 0 auto 1rem;">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           </div>
-          <h4>Drivers</h4>
-          <p class="text-sm">Equip your drivers with an intuitive mobile app for every stop.</p>
+          <h4 data-i18n="solution.drivers">Drivers</h4>
+          <p class="text-sm" data-i18n="solution.drivers.desc">Equip your drivers with an intuitive mobile app for every stop.</p>
         </div>
         <div class="card" style="text-align: center; padding: 1.5rem;">
           <div class="card-icon rose" style="margin: 0 auto 1rem;">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           </div>
-          <h4>Analytics</h4>
-          <p class="text-sm">Get actionable insights with real-time operational dashboards.</p>
+          <h4 data-i18n="solution.analytics">Analytics</h4>
+          <p class="text-sm" data-i18n="solution.analytics.desc">Get actionable insights with real-time operational dashboards.</p>
         </div>
       </div>
     </div>
@@ -154,9 +155,9 @@
     <div class="container">
       <div class="feature-row">
         <div class="feature-content reveal">
-          <span class="section-label">Route Optimization</span>
-          <h3>Get fast and reliable<br>delivery routes</h3>
-          <p>Our AI engine calculates the most efficient routes across your entire fleet, factoring in traffic, time windows, vehicle capacity, and driver skills.</p>
+          <span class="section-label" data-i18n="routes.label">Route Optimization</span>
+          <h3 data-i18n="routes.title">Get fast and reliable<br>delivery routes</h3>
+          <p data-i18n="routes.desc">Our AI engine calculates the most efficient routes across your entire fleet, factoring in traffic, time windows, vehicle capacity, and driver skills.</p>
           <ul class="feature-bullets">
             <li>
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.5 2l-7.5 7.5-3-3"/></svg>
@@ -1127,44 +1128,44 @@
           <a href="index.html" class="nav-logo" style="color: var(--vtx-white);">
             Virtus
           </a>
-          <p>The complete last-mile management platform for courier and transport companies worldwide.</p>
+          <p data-i18n="footer.tagline">The complete last-mile delivery management platform for modern transport companies.</p>
+          <div style="margin-top: 1rem;" id="lang-switch-footer"></div>
         </div>
         <div class="footer-col">
-          <h5>Product</h5>
+          <h5 data-i18n="footer.product">Product</h5>
           <a href="product.html">Route Optimization</a>
           <a href="product.html">Live Tracking</a>
           <a href="product.html">Driver App</a>
-          <a href="product.html">Analytics</a>
+          <a href="product.html" data-i18n="solution.analytics">Analytics</a>
           <a href="product.html">API</a>
         </div>
         <div class="footer-col">
-          <h5>Resources</h5>
-          <a href="resources.html">Blog</a>
-          <a href="resources.html">Case Studies</a>
-          <a href="resources.html">Guides</a>
-          <a href="docs.html">Documentation</a>
-          <a href="help.html">Help Centre</a>
+          <h5 data-i18n="footer.resources">Resources</h5>
+          <a href="resources.html" data-i18n="footer.blog">Blog</a>
+          <a href="resources.html" data-i18n="footer.guides">Guides</a>
+          <a href="docs.html" data-i18n="footer.docs">Documentation</a>
+          <a href="help.html" data-i18n="footer.help">Help Centre</a>
         </div>
         <div class="footer-col">
-          <h5>Company</h5>
-          <a href="about.html">About</a>
-          <a href="careers.html">Careers</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
-          <a href="partners.html">Partners</a>
+          <h5 data-i18n="footer.company">Company</h5>
+          <a href="about.html" data-i18n="footer.about">About</a>
+          <a href="careers.html" data-i18n="footer.careers">Careers</a>
+          <a href="pricing.html" data-i18n="footer.pricing">Pricing</a>
+          <a href="contact.html" data-i18n="footer.contact">Contact</a>
+          <a href="partners.html" data-i18n="footer.partners">Partners</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Virtus Transport. All rights reserved.</span>
+        <span data-i18n="footer.copyright">&copy; 2026 Virtus Transport. All rights reserved.</span>
         <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="#">Cookie Settings</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="terms.html" data-i18n="footer.terms">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
   (function(){

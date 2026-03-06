@@ -539,8 +539,6 @@ p { color: var(--vtx-muted); line-height: 1.7; }
 /* ---- Dashboard Mock ---- */
 #hero-animation {
   background: #F5F0EB;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0,0,0,0.04);
 }
 
 /* ---- Code Block ---- */
@@ -993,9 +991,9 @@ body::after {
     padding: 2.5rem 1.5rem;
   }
 
-  /* Hero animation — smaller on mobile */
-  #hero-animation {
-    height: 300px !important;
+  /* Hero section — ensure text readable on mobile */
+  #hero-section {
+    min-height: auto !important;
   }
 
   /* Nav logo text */
